@@ -2,7 +2,8 @@
 Deploys a python flask app to AWS Elastic Beanstalk
 
 ## Application 
-Build with web framework Flask. Application responds with a "hello world!" when a GET request is made to /hello
+Build with web framework Flask. Application responds with a "hello world!" when a GET request is made to /hello.
+
 End point : http://concourse-env.eba-37cdi5qb.us-west-2.elasticbeanstalk.com/hello
 
 ## Deployment 
@@ -14,7 +15,7 @@ Continuous Deployment tool used is concourse as its,
 Continuous deployment is set in such a way that,
 * Application is deployed automatically when an push is made to master branch
 * Uses AWS Elastic Beanstalk
-* Pipeline code is in deploy directory
+* AWS credentials are passed as variables
 
 ### Installation
 ```
