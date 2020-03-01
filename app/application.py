@@ -1,8 +1,8 @@
 from flask import Flask
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route("/hello")
+@application.route("/hello")
 def hello():
     return "hello world!"
 
@@ -11,5 +11,5 @@ def hello():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    app.debug = True
-    app.run()
+    application.debug = True
+    application.run()
