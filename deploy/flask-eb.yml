@@ -1,0 +1,32 @@
+resources:  
+  - name: helloworld-repo 
+    type: git  
+    source:  
+      uri: https://github.com/hossanrose/helloworld.git
+      branch: master
+      username: ((USER))
+      password: ((PASS))
+jobs:  
+  # Deploy the application to the AWS Beanstalk
+  - name: Deploy
+    plan:  
+    - task: deploy-aws  
+      params:
+        AWS_ACCESS_KEY_ID: ((AWS_ACCESS_KEY_ID))
+        AWS_SECRET_ACCESS_KEY: ((AWS_SECRET_ACCESS_KEY))
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: chriscamicas/awscli-awsebcli
+          - get:
+        run:
+          path: sh
+          args:
+          - -c
+          - |
+            eb init continuous-deployment-demo -p "64bit Amazon Linux 2018.03 v2.10.0 running Java 8" --region "us-east-2"
+            eb create concourse-env --single
+            eb deploy concourse-env
+            eb status
